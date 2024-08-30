@@ -1,0 +1,33 @@
+digraph {
+	graph [bgcolor="#FFFFFF" color="#7C96BC" fontcolor="#202020" fontname=Verdana fontsize=10 margin="0,0" pad="1.0,0.5"]
+	node [color="#7C96BC" fillcolor="#BCD6FC" fontcolor="#202020" fontname=Verdana fontsize=10 margin="0,0" shape=box style=filled]
+	edge [color="#7C96BC" fontcolor="#202020" fontname=Verdana fontsize=10 style=doted]
+	"ConvNet/Sequential[conv1]/AvgPool2d[2]/outputs/13" [label=<<table border='0' cellborder='0' cellpadding='0'><tr><td cellpadding='6'>Pad</td></tr></table>>]
+	"ConvNet/Sequential[conv1]/AvgPool2d[2]/outputs/14" [label=<<table border='0' cellborder='0' cellpadding='0'><tr><td cellpadding='6'>AveragePool2x2</td></tr></table>>]
+	"ConvNet/outputs/18" [label=<<table border='0' cellborder='0' cellpadding='0'><tr><td cellpadding='6'>Constant</td></tr></table>>]
+	"ConvNet/outputs/19" [label=<<table border='0' cellborder='0' cellpadding='0'><tr><td cellpadding='6'>Shape</td></tr></table>>]
+	"ConvNet/outputs/20" [label=<<table border='0' cellborder='0' cellpadding='0'><tr><td cellpadding='6'>Gather</td></tr></table>>]
+	"ConvNet/outputs/21" [label=<<table border='0' cellborder='0' cellpadding='0'><tr><td cellpadding='6'>Constant</td></tr></table>>]
+	"/outputs/22" [label=<<table border='0' cellborder='0' cellpadding='0'><tr><td cellpadding='6'>Unsqueeze</td></tr></table>>]
+	"/outputs/23" [label=<<table border='0' cellborder='0' cellpadding='0'><tr><td cellpadding='6'>Unsqueeze</td></tr></table>>]
+	"/outputs/24" [label=<<table border='0' cellborder='0' cellpadding='0'><tr><td cellpadding='6'>Concat</td></tr></table>>]
+	"ConvNet/outputs/25" [label=<<table border='0' cellborder='0' cellpadding='0'><tr><td cellpadding='6'>Reshape</td></tr></table>>]
+	"ConvNet/Sequential[fc]/ReLU[3]/outputs/30" [label=<<table border='0' cellborder='0' cellpadding='0'><tr><td cellpadding='6'>Linear</td></tr></table>>]
+	2144139183087370555 [label=<<table border='0' cellborder='0' cellpadding='0'><tr><td cellpadding='6'>Conv5x5 &gt; Relu</td></tr></table>>]
+	6712728079297930766 [label=<<table border='0' cellborder='0' cellpadding='0'><tr><td cellpadding='6'>Conv3x3 &gt; Relu &gt; MaxPool2x2</td></tr></table>>]
+	11821940579921410336 [label=<<table border='0' cellborder='0' cellpadding='0'><tr><td cellpadding='6'>Linear &gt; Relu</td></tr><tr><td align='right' cellpadding='2'>x2</td></tr></table>>]
+	"ConvNet/Sequential[conv1]/AvgPool2d[2]/outputs/13" -> "ConvNet/Sequential[conv1]/AvgPool2d[2]/outputs/14"
+	"ConvNet/outputs/18" -> "ConvNet/outputs/20"
+	"ConvNet/outputs/19" -> "ConvNet/outputs/20"
+	"ConvNet/outputs/20" -> "/outputs/22"
+	"ConvNet/outputs/21" -> "/outputs/23"
+	"/outputs/22" -> "/outputs/24"
+	"/outputs/23" -> "/outputs/24"
+	"/outputs/24" -> "ConvNet/outputs/25"
+	2144139183087370555 -> "ConvNet/Sequential[conv1]/AvgPool2d[2]/outputs/13"
+	"ConvNet/Sequential[conv1]/AvgPool2d[2]/outputs/14" -> 6712728079297930766
+	6712728079297930766 -> "ConvNet/outputs/19"
+	6712728079297930766 -> "ConvNet/outputs/25"
+	"ConvNet/outputs/25" -> 11821940579921410336
+	11821940579921410336 -> "ConvNet/Sequential[fc]/ReLU[3]/outputs/30"
+}
